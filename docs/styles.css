@@ -744,3 +744,6 @@ h2 { font-size: clamp(34px, 4.4vw, 64px); line-height: 1.0; letter-spacing: -0.0
   .brand-name { font-size: 14px; white-space: normal; line-height: 1.1; max-width: 9.5em; }
   .bar .btn-sm { padding: 0 12px; font-size: 13px; }
 }
+
+/* Ticker separators: small amber squares */
+.ticker-row i { width: 12px; height: 12px; background: var(--amber); flex: none; font-size: 0; }
