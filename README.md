@@ -8,7 +8,11 @@ Landing page for Advance Business Solution, a Mumbai-based custom software and .
 - `docs/styles.css` — styles (Engineered Editorial: cobalt, navy and signal orange)
 - `docs/main.js` — hero system animation, scroll effects, solution filter, enquiry form
 
-No build step or dependencies. Open `docs/index.html` through any static server, for example:
+No build step or dependencies. GitHub Pages serves the site from the `docs/` folder on `main`.
+
+Live site: https://tzee-pixel.github.io/advance-business-solution/
+
+To preview locally, run any static server, for example:
 
 ```bash
 cd docs && python3 -m http.server 4173
