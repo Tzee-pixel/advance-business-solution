@@ -429,14 +429,43 @@
   </main>
 
   <footer class="site-footer">
-    <div class="wrap foot-grid">
-      <p class="muted">Advance Business Solution · Custom software development, Mumbai</p>
-      <nav class="foot-links" aria-label="Footer">
-        <a href="#build">Solutions</a><a href="#work">Work</a><a href="#process">Process</a><a href="#technology">Technology</a><a href="#start">Contact</a><a href="#start">Careers</a>
-      </nav>
-      <p class="mono muted small">© <span id="year">2026</span> Advance Business Solution</p>
+    <div class="foot-panel">
+      <div class="wrap foot-cols">
+        <div class="foot-brand">
+          <a class="brand" href="#top" aria-label="Advance Business Solution home">
+            <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="1.5" width="8" height="8"/><rect x="14.5" y="14.5" width="8" height="8"/><path d="M9.5 5.5h5.5v9"/></svg>
+            <span class="brand-name">Advance Business Solution</span>
+          </a>
+          <p class="foot-line">Custom software for businesses whose operations don't fit off-the-shelf tools.</p>
+          <p class="mono foot-addr">Office No. 10, B Wing, Haji Habib Bldg.,<br>Opp. Fire Brigade, Dadar, Mumbai 400014</p>
+        </div>
+        <nav class="foot-col" aria-label="Footer pages">
+          <p class="tag">Pages</p>
+          <ul><li><a href="#build">Solutions</a></li><li><a href="#work">Work</a></li><li><a href="#process">Process</a></li><li><a href="#technology">Technology</a></li><li><a href="#start">Careers</a></li></ul>
+        </nav>
+        <nav class="foot-col" aria-label="Footer solutions">
+          <p class="tag">Solutions</p>
+          <ul><li><a href="#portfolio">Real estate systems</a></li><li><a href="#portfolio">Healthcare software</a></li><li><a href="#portfolio">Inventory &amp; orders</a></li><li><a href="#build">Integrations</a></li></ul>
+        </nav>
+        <div class="foot-col foot-cta">
+          <p class="tag">Start a project</p>
+          <p class="foot-cta-t">Tell us how your business works. We'll show you what we'd build.</p>
+          <a class="btn btn-accent" href="#start">Start a Project <span aria-hidden="true">→</span></a>
+          <p class="mono foot-mail">sales@e-magicindia.com</p>
+        </div>
+      </div>
     </div>
-    <div class="wrap"><p class="wordmark draw" aria-hidden="true">Advance Business Solution</p></div>
+
+    <div class="foot-marquee" id="foot-marquee" aria-hidden="true">
+      <canvas id="pixel-trail"></canvas>
+      <div class="foot-marquee-row"><span>Advance Business Solution</span><i></i><span>Advance Business Solution</span><i></i><span>Advance Business Solution</span><i></i><span>Advance Business Solution</span><i></i><span>Advance Business Solution</span><i></i><span>Advance Business Solution</span><i></i></div>
+    </div>
+
+    <div class="wrap foot-bar mono">
+      <span>© <span id="year">2026</span> Advance Business Solution</span>
+      <span class="foot-clock"><span class="live-dot" aria-hidden="true"></span>Mumbai <time id="mumbai-time">--:--</time> IST</span>
+      <a href="#top" class="to-top">Back to top ↑</a>
+    </div>
   </footer>
 
   <script src="main.js" defer></script>

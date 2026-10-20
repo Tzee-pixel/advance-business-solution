@@ -571,5 +571,56 @@
   });
   back.addEventListener("click", () => step > 0 && showStep(step - 1));
 
+
+  /* ================= Footer: pixel cursor trail (after 1minus1) + Mumbai clock ================= */
+  const fm = document.getElementById("foot-marquee");
+  const cv = document.getElementById("pixel-trail");
+  if (fm && cv && !reduced && matchMedia("(hover: hover)").matches) {
+    const ctx = cv.getContext("2d");
+    const CELL = 26;
+    const cells = new Map();
+    let raf = 0, last = null;
+    const size = () => {
+      const r = fm.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1);
+      cv.width = r.width * d; cv.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+    };
+    size(); addEventListener("resize", size);
+    const mark = (x, y) => {
+      const k = `${Math.floor(x / CELL)},${Math.floor(y / CELL)}`;
+      cells.set(k, performance.now());
+    };
+    fm.addEventListener("pointermove", (e) => {
+      const r = fm.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      // fill the gap between samples so fast moves leave a continuous trail
+      if (last) {
+        const steps = Math.ceil(Math.hypot(x - last[0], y - last[1]) / (CELL / 2));
+        for (let i = 1; i <= steps; i++) mark(lerp(last[0], x, i / steps), lerp(last[1], y, i / steps));
+      } else mark(x, y);
+      last = [x, y];
+      if (!raf) raf = requestAnimationFrame(draw);
+    });
+    fm.addEventListener("pointerleave", () => { last = null; });
+    function draw(now) {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      for (const [k, t] of cells) {
+        const age = (now - t) / 900;
+        if (age >= 1) { cells.delete(k); continue; }
+        const [cx, cy] = k.split(",").map(Number);
+        ctx.globalAlpha = 1 - age * age;
+        ctx.fillStyle = age < 0.35 ? "#ffb020" : "#ff5a1f";
+        ctx.fillRect(cx * CELL, cy * CELL, CELL, CELL);
+      }
+      ctx.globalAlpha = 1;
+      raf = cells.size ? requestAnimationFrame(draw) : 0;
+    }
+  }
+  const clock = document.getElementById("mumbai-time");
+  if (clock) {
+    const fmt = new Intl.DateTimeFormat("en-IN", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit", hour12: false });
+    const tickClock = () => { clock.textContent = fmt.format(new Date()); };
+    tickClock(); setInterval(tickClock, 15000);
+  }
+
   document.getElementById("year").textContent = new Date().getFullYear();
 })();
