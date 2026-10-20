@@ -4,14 +4,14 @@ Landing page for Advance Business Solution, a Mumbai-based custom software and .
 
 ## Structure
 
-- `site/index.html` — page markup
-- `site/styles.css` — styles (Engineered Editorial: cobalt, navy and signal orange)
-- `site/main.js` — hero system animation, scroll effects, solution filter, enquiry form
+- `docs/index.html` — page markup
+- `docs/styles.css` — styles (Engineered Editorial: cobalt, navy and signal orange)
+- `docs/main.js` — hero system animation, scroll effects, solution filter, enquiry form
 
-No build step or dependencies. Open `site/index.html` through any static server, for example:
+No build step or dependencies. Open `docs/index.html` through any static server, for example:
 
 ```bash
-cd site && python3 -m http.server 4173
+cd docs && python3 -m http.server 4173
 ```
 
 ## Before publishing
