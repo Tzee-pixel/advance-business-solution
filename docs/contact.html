@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contact — Advance Business Solution</title>
+  <meta name="description" content="Start a software project with Advance Business Solution, Mumbai. Tell us how your business works.">
+  <meta name="theme-color" content="#2f4bff">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact — Advance Business Solution">
+  <meta property="og:description" content="Start a software project with Advance Business Solution, Mumbai. Tell us how your business works.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="inner">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="brand" href="index.html" aria-label="Advance Business Solution home">
+        <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="1.5" y="1.5" width="8" height="8"/><rect x="14.5" y="14.5" width="8" height="8"/>
+          <path d="M9.5 5.5h5.5v9"/>
+        </svg>
+        <span class="brand-name">Advance Business Solution</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html#portfolio">Solutions</a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#process">Process</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+      <a class="btn btn-accent btn-sm" href="contact.html">Start a Project</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero" id="top">
+      <div class="wrap page-hero-in">
+        <p class="tag">Contact</p>
+        <h1 class="draw">Tell us how your business works.</h1>
+        <p class="sp-lede">Four short questions about your project. We read every enquiry and reply with next steps, starting with a discovery call.</p>
+      </div>
+    </section>
+
+    <section class="contact-sec" id="start">
+      <div class="wrap contact-grid">
+        <form class="enquiry" id="enquiry" novalidate>
+            <div class="form-head mono"><span>Project enquiry</span><span id="step-count">Step 1 / 4</span></div>
+            <div class="form-progress" aria-hidden="true"><span id="form-bar"></span></div>
+
+            <fieldset class="fstep is-active" data-step="1">
+              <legend>What do you need?</legend>
+              <div class="choices">
+                <label><input type="radio" name="need" id="need-build" value="build" required><span>A new application</span></label>
+                <label><input type="radio" name="need" id="need-modern" value="modernise"><span>Modernise an existing one</span></label>
+                <label><input type="radio" name="need" id="need-int" value="integrate"><span>Connect our systems</span></label>
+                <label><input type="radio" name="need" id="need-support" value="support"><span>Ongoing support</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="fstep" data-step="2">
+              <legend>What do you use today?</legend>
+              <div class="choices">
+                <label><input type="checkbox" name="today" id="today-excel" value="excel"><span>Excel / Google Sheets</span></label>
+                <label><input type="checkbox" name="today" id="today-tally" value="tally"><span>Tally</span></label>
+                <label><input type="checkbox" name="today" id="today-sap" value="sap"><span>SAP</span></label>
+                <label><input type="checkbox" name="today" id="today-other" value="other"><span>Another application</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="fstep" data-step="3">
+              <legend>When do you want to start?</legend>
+              <div class="choices">
+                <label><input type="radio" name="when" id="when-now" value="now" required><span>Within a month</span></label>
+                <label><input type="radio" name="when" id="when-q" value="quarter"><span>In 1–3 months</span></label>
+                <label><input type="radio" name="when" id="when-later" value="later"><span>Later this year</span></label>
+                <label><input type="radio" name="when" id="when-explore" value="exploring"><span>Just exploring</span></label>
+              </div>
+              <label class="field"><span class="mono">Budget range (optional)</span>
+                <select id="budget" name="budget">
+                  <option value="">Prefer not to say</option>
+                  <option>Under ₹5 lakh</option>
+                  <option>₹5–15 lakh</option>
+                  <option>₹15–50 lakh</option>
+                  <option>Above ₹50 lakh</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <fieldset class="fstep" data-step="4">
+              <legend>How do we reach you?</legend>
+              <div class="fields">
+                <label class="field"><span class="mono">Name</span><input id="f-name" name="name" autocomplete="name" required></label>
+                <label class="field"><span class="mono">Company</span><input id="f-company" name="company" autocomplete="organization" required></label>
+                <label class="field"><span class="mono">Work email</span><input id="f-email" name="email" type="email" autocomplete="email" required></label>
+                <label class="field"><span class="mono">Phone</span><input id="f-phone" name="phone" type="tel" autocomplete="tel"></label>
+              </div>
+            </fieldset>
+
+            <div class="fdone" id="form-done" hidden>
+              <p class="mono label">Received</p>
+              <h3>Thanks. Here's what happens next.</h3>
+              <ol>
+                <li>We review your answers and reply by email.</li>
+                <li>We schedule a discovery call to understand your process.</li>
+                <li>You receive a written scope and approach.</li>
+              </ol>
+              <p class="proto-note mono">Prototype: this form is not connected to email yet.</p>
+            </div>
+
+            <p class="form-error" id="form-error" role="alert"></p>
+            <div class="form-nav" id="form-nav">
+              <button type="button" class="btn btn-ghost" id="f-back" disabled>Back</button>
+              <button type="submit" class="btn btn-accent" id="f-next">Continue <span aria-hidden="true">→</span></button>
+            </div>
+          </form>
+        <aside class="contact-side">
+          <div class="cs-block">
+            <p class="tag">Email</p>
+            <p class="cs-big">sales@e-magicindia.com</p>
+          </div>
+          <div class="cs-block">
+            <p class="tag">Office</p>
+            <p>Office No. 10, B Wing, Haji Habib Bldg.,<br>Opp. Fire Brigade, Dadar, Mumbai 400014</p>
+            <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&query=Haji+Habib+Building+Dadar+Mumbai+400014" target="_blank" rel="noopener">Open in Google Maps ↗</a>
+          </div>
+          <div class="cs-block">
+            <p class="tag">What happens next</p>
+            <ol class="cs-steps">
+              <li>We review your answers and reply by email.</li>
+              <li>We schedule a discovery call to understand your process.</li>
+              <li>You receive a written scope and approach.</li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="foot-panel">
+      <div class="wrap foot-cols">
+        <div class="foot-brand">
+          <a class="brand" href="index.html" aria-label="Advance Business Solution home">
+            <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="1.5" width="8" height="8"/><rect x="14.5" y="14.5" width="8" height="8"/><path d="M9.5 5.5h5.5v9"/></svg>
+            <span class="brand-name">Advance Business Solution</span>
+          </a>
+          <p class="foot-line">Custom software for businesses whose operations don't fit off-the-shelf tools.</p>
+          <p class="mono foot-addr">Office No. 10, B Wing, Haji Habib Bldg.,<br>Opp. Fire Brigade, Dadar, Mumbai 400014</p>
+        </div>
+        <nav class="foot-col" aria-label="Footer pages">
+          <p class="tag">Pages</p>
+          <ul><li><a href="about.html">About</a></li><li><a href="index.html#portfolio">Solutions</a></li><li><a href="index.html#work">Work</a></li><li><a href="index.html#process">Process</a></li><li><a href="contact.html">Contact</a></li></ul>
+        </nav>
+        <nav class="foot-col" aria-label="Footer solutions">
+          <p class="tag">Solutions</p>
+          <ul><li><a href="solutions/rera-document-management.html">RERA documents</a></li><li><a href="solutions/construction-inventory.html">Construction inventory</a></li><li><a href="solutions/inventory-order-management.html">Inventory &amp; orders</a></li><li><a href="solutions/patient-token-management.html">Patient tokens</a></li></ul>
+        </nav>
+        <div class="foot-col foot-cta">
+          <p class="tag">Start a project</p>
+          <p class="foot-cta-t">Tell us how your business works. We'll show you what we'd build.</p>
+          <a class="btn btn-accent" href="contact.html">Start a Project <span aria-hidden="true">→</span></a>
+          <p class="mono foot-mail">sales@e-magicindia.com</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-marquee" id="foot-marquee" aria-hidden="true">
+      <canvas id="pixel-trail"></canvas>
+      <div class="foot-marquee-row"><span>Advance Business Solution</span><i></i><span>Advance Business Solution</span><i></i><span>Advance Business Solution</span><i></i><span>Advance Business Solution</span><i></i><span>Advance Business Solution</span><i></i><span>Advance Business Solution</span><i></i></div>
+    </div>
+
+    <div class="wrap foot-bar mono">
+      <span>© <span id="year">2026</span> Advance Business Solution</span>
+      <span class="foot-clock"><span class="live-dot" aria-hidden="true"></span>Mumbai <time id="mumbai-time">--:--</time> IST</span>
+      <a href="#top" class="to-top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

@@ -20,7 +20,8 @@
     return n;
   };
 
-  // Business entities: where they start (fragmented), where they sit in the architecture map,
+  if (svg) {
+// Business entities: where they start (fragmented), where they sit in the architecture map,
   // and which navigation slot they become in the finished application.
   const ENTITIES = [
     { id: "customers", label: "CUSTOMERS", meta: "Excel sheet",       A: [36, 46, -5],   B: [30, 80] },
@@ -249,7 +250,12 @@
 
   replayBtn.addEventListener("click", () => { autoStart = performance.now(); autoDone = false; replayBtn.hidden = true; });
 
+  let heroOn = true, running = false;
+  const startLoop = () => { if (!running) { running = true; requestAnimationFrame(tick); } };
+  if (!reduced) new IntersectionObserver(([e]) => { heroOn = e.isIntersecting; if (heroOn) startLoop(); }).observe(hero);
+
   function tick(time) {
+    if (!heroOn && !reduced) { running = false; return; }
     let target;
     if (reduced) target = 1;
     else if (desktopQ.matches) {
@@ -266,9 +272,11 @@
     shown += (target - shown) * (reduced ? 1 : 0.12);
     if (Math.abs(target - shown) < 0.0005) shown = target;
     render(shown, time);
-    if (!reduced) requestAnimationFrame(tick);
+    if (!reduced) requestAnimationFrame(tick); else running = false;
   }
-  requestAnimationFrame(tick);
+  startLoop();
+
+  }
 
   /* ================= Reveals + heading draw-in ================= */
   if (!reduced) {
@@ -352,16 +360,18 @@
   /* ================= Process: pinned horizontal track ================= */
   const hpin = document.querySelector(".hpin");
   const htrack = document.getElementById("htrack");
-  const hsteps = [...htrack.querySelectorAll(".hstep")];
+  const hsteps = htrack ? [...htrack.querySelectorAll(".hstep")] : [];
   const railFill = document.getElementById("rail-fill");
   const hNow = document.getElementById("hstep-now");
   let hTravel = 0;
   function hpinLayout() {
+    if (!hpin) return;
     if (reduced || !desktopQ.matches) { hpin.style.height = ""; htrack.style.transform = ""; hTravel = 0; return; }
     hTravel = Math.max(0, htrack.scrollWidth - innerWidth);
     hpin.style.height = `${innerHeight - 64 + hTravel}px`;
   }
   function hpinUpdate() {
+    if (!hpin) return;
     if (reduced || !desktopQ.matches) { hsteps.forEach((s) => s.classList.add("is-on")); return; }
     const r = hpin.getBoundingClientRect();
     const p = clamp(-(r.top - 64) / (hTravel || 1));
@@ -383,14 +393,15 @@
   hpinLayout(); onScroll();
   document.fonts && document.fonts.ready.then(() => { hpinLayout(); onScroll(); });
 
-  /* ================= Find your problem ================= */
+  if (document.getElementById("pp-diagram")) {
+/* ================= Find your problem ================= */
   const PROBLEMS = [
     {
       tag: "Order & inventory management",
       title: "Move daily operations out of spreadsheets, with Tally kept in sync.",
       body: "We build an order and inventory system around your existing process, then integrate it with Tally so accounts stay accurate without re-entry.",
       build: "Order management · Inventory · Tally integration",
-      work: "Neptune Marketing inventory & order management · Building Material Supply",
+      work: "Inventory & order management · Building Material Supply",
       need: "build",
       before: ["Excel order sheets", "WhatsApp orders", "Tally, typed by hand"],
       hub: "ORDER SYSTEM",
@@ -412,7 +423,7 @@
       title: "Software that follows your process, instead of the other way round.",
       body: "When packaged software forces workarounds, we design a system around your rules, roles and approvals, built to grow with the business.",
       build: "Custom web application · Workflow · Dashboards",
-      work: "Birla Task Management · Patient Token Management · RERA Document Management",
+      work: "Task Management · Patient Token Management · RERA Document Management",
       need: "build",
       before: ["Packaged tool", "Workarounds", "Side spreadsheets"],
       hub: "YOUR RULES",
@@ -433,7 +444,8 @@
 
   // Before → system → after diagram, drawn to match the hero's visual language
   const ppSvg = document.getElementById("pp-diagram");
-  let ppRaf = 0;
+  let ppRaf = 0, ppVisible = true;
+  new IntersectionObserver(([e]) => { ppVisible = e.isIntersecting; }).observe(ppSvg);
   function drawDiagram(d) {
     cancelAnimationFrame(ppRaf);
     ppSvg.innerHTML = "";
@@ -464,6 +476,7 @@
     wires.forEach((w, i) => { w.style.strokeDasharray = w.classList.contains("in") ? "3 4" : `${lens[i]} ${lens[i]}`; if (!w.classList.contains("in")) w.style.strokeDashoffset = lens[i]; });
     const start = performance.now();
     const tickD = (now) => {
+      if (!ppVisible) { ppRaf = requestAnimationFrame(tickD); return; }
       const t = now - start;
       outWires.forEach((w, i) => {
         const k = ease(clamp((t - 200 - i * 120) / 600));
@@ -516,6 +529,8 @@
   });
 
 
+  }
+
   /* ================= Solutions index filter ================= */
   const solBtns = [...document.querySelectorAll(".chip-btn[data-filter]")];
   const sols = [...document.querySelectorAll(".sol")];
@@ -525,7 +540,8 @@
     sols.forEach((s) => s.classList.toggle("is-dim", f !== "all" && s.dataset.sector !== f));
   }));
 
-  /* ================= Enquiry form ================= */
+  if (document.getElementById("enquiry")) {
+/* ================= Enquiry form ================= */
   const form = document.getElementById("enquiry");
   const fsteps = [...form.querySelectorAll(".fstep")];
   const back = document.getElementById("f-back");
@@ -571,6 +587,8 @@
   });
   back.addEventListener("click", () => step > 0 && showStep(step - 1));
 
+
+  }
 
   /* ================= Footer: pixel cursor trail (after 1minus1) + Mumbai clock ================= */
   const fm = document.getElementById("foot-marquee");
@@ -622,5 +640,6 @@
     tickClock(); setInterval(tickClock, 15000);
   }
 
-  document.getElementById("year").textContent = new Date().getFullYear();
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
